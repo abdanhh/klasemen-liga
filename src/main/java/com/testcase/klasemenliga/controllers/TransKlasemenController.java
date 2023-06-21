@@ -20,8 +20,18 @@ public class TransKlasemenController {
         return service.findAllKlasemen();
     }
 
+    @GetMapping("/klasemen/v1")
+    public List<DataKlasemenListDto> findAllKlasemens() {
+        return service.findKlasemens();
+    }
+
     @PostMapping("/match")
     public String saveDataMatch(@RequestBody List<AddMatchPayload> payloads){
         return service.saveDataMatch(payloads);
+    }
+
+    @PostMapping("/statistic")
+    public String saveDataStatistic(@RequestBody List<AddMatchPayload> payloads){
+        return service.saveDataStatistic(payloads);
     }
 }

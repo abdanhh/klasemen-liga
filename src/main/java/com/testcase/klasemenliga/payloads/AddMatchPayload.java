@@ -11,8 +11,8 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AddMatchPayload {
-    private Long home_team;
-    private Long away_team;
+    private Long homeTeam;
+    private Long awayTeam;
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Bangkok")
     private Date schedule;
     private StatisticsPayload statistics;

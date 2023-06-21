@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StatisticsPayload {
-    private Long home_team_goal;
-    private Long away_team_goal;
+    private Long homeTeamGoal;
+    private Long awayTeamGoal;
 }
