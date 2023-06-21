@@ -1,16 +1,12 @@
 package com.testcase.klasemenliga.repositories;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.testcase.klasemenliga.dtos.DataKlasemenListDto;
 import com.testcase.klasemenliga.models.TransKlasemen;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
 
-@Repository
 public interface TransKlasemenRepository extends JpaRepository<TransKlasemen,Long> {
 
     @Query(value = "SELECT tk.team_id FROM trans_klasemen tk " +

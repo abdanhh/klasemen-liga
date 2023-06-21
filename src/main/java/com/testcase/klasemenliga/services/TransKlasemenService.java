@@ -6,6 +6,7 @@ import com.testcase.klasemenliga.models.TransKlasemen;
 import com.testcase.klasemenliga.payloads.AddMatchPayload;
 import com.testcase.klasemenliga.repositories.MasterTeamRepository;
 import com.testcase.klasemenliga.repositories.TransKlasemenRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContextException;
 import org.springframework.stereotype.Service;
@@ -16,12 +17,11 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
+@RequiredArgsConstructor(onConstructor=@__(@Autowired))
 public class TransKlasemenService {
 
-    @Autowired
-    TransKlasemenRepository transKlasemenRepository;
-    @Autowired
-    MasterTeamRepository masterTeamRepository;
+    private final TransKlasemenRepository transKlasemenRepository;
+    private final MasterTeamRepository masterTeamRepository;
 
     private AtomicInteger counter = new AtomicInteger(1);
     private final Integer winPoint = 3;
@@ -30,7 +30,7 @@ public class TransKlasemenService {
         List<DataKlasemenListDto> response = new ArrayList<>();
         for (Long listTeamId : transKlasemenRepository.findAllKlasemen()){
             DataKlasemenListDto dto = new DataKlasemenListDto();
-            MasterTeam team = masterTeamRepository.findById(listTeamId).get();
+            MasterTeam team = masterTeamRepository.findById(listTeamId).orElseThrow(()-> new ApplicationContextException("Team Not Found!"));
             dto.setTeamId(team.getTeamId());
             dto.setName(team.getName());
             dto.setCity(team.getCity());
